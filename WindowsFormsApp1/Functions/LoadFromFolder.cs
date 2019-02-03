@@ -17,7 +17,7 @@ public class LoadFromFolder
     }
     public bool Load()
     {
-        BitmapConversion.convertingBitmap.ConvertToBitmap("");
+        BitmapConversion.Instance.ConvertToBitmap("");
         return true;
     }
 }

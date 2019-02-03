@@ -45,11 +45,8 @@ namespace WindowsFormsApp1.Functions
 			Bitmap bmp = new Bitmap(rect.Width, rect.Height);
 			Graphics g = Graphics.FromImage(bmp);
 			g.CopyFromScreen(rect.Location, Point.Empty, rect.Size, CopyPixelOperation.SourceCopy);
-			//test
 			bmp = BitmapConversion.Instance.ResizeTo256Bit(bmp);
-			string folderLoc = @"D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\WindowsFormsApp1\bin\Debug\test";
-			BitmapConversion.Instance.SaveAsJpeg(folderLoc, "1", bmp);
-			//end
+			
 			return bmp;
 		}
 		public void MoveCursor(Rectangle rect)

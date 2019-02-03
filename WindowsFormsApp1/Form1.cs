@@ -116,7 +116,7 @@ namespace WindowsFormsApp1
 		{
 			if(bmp != null)
 			{
-				string folderLoc = @"D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\WindowsFormsApp1\bin\Debug\test";
+				string folderLoc = @".\test";
 				Bitmap bmpSmall = BitmapConversion.Instance.ResizeTo256Bit(bmp);
 
 				BitmapConversion.Instance.SaveAsJpeg(folderLoc, "0", bmpSmall);

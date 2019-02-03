@@ -38,6 +38,7 @@ namespace WindowsFormsApp1
 		{
 
 			string fileName = FileName;
+			System.IO.Directory.CreateDirectory(folderLocation);
 			if (!System.IO.Path.HasExtension(fileName) || System.IO.Path.GetExtension(fileName) != "jpg")
 				fileName =folderLocation+"\\"+ fileName + ".jpg";
 

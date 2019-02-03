@@ -68,7 +68,11 @@ namespace WindowsFormsApp1
 		}
 		public bool CompareBytes(byte[] a,byte[] b)
 		{
-			return a==b;
+			string at = string.Join("",a);
+			string bt = string.Join("",b);
+			if(at == bt)
+				return true;
+			return false;
 		}
 	}
 

@@ -127,7 +127,7 @@ namespace WindowsFormsApp1
 		private void StartButton_Click(object sender, EventArgs e)
 		{
 			timer1.Start();
-			timer1.Interval = 1000;
+			timer1.Interval = 5000;
 			this.WindowState = FormWindowState.Minimized;
 			
 		}
@@ -144,7 +144,7 @@ namespace WindowsFormsApp1
 
 				byte[] a = BitmapConversion.Instance.Array1DFromBitmap(allBitmaps[iterationNumb]);
 				byte[] b = BitmapConversion.Instance.Array1DFromBitmap(bMap);
-				bool SameImage = BitmapConversion.Instance.CompareBytes(a, a);
+				bool SameImage = BitmapConversion.Instance.CompareBytes(a, b);
 				if (SameImage)
 				{
 					bot.MoveCursor(allRect[iterationNumb]);
@@ -157,6 +157,10 @@ namespace WindowsFormsApp1
 				//reset the actions
 				//if (iterationNumb >= lVManager.time.Count)
 				//    iterationNumb = 0;
+			}
+			else
+			{
+				this.WindowState = FormWindowState.Normal;
 			}
 		}
 	}

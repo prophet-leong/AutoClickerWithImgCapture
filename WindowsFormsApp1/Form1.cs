@@ -24,13 +24,8 @@ namespace WindowsFormsApp1
 		ListViewManager lVManager;
 		BotFunctions bot;
 
-		//bot data
 		int imgCount = 0;
-		List<Rectangle> allRect = new List<Rectangle>();
-		List<Bitmap> allBitmaps = new List<Bitmap>();
-		List<int> allTime = new List<int>();
-		//timer data
-		int iterationNumb = 0;
+
 
 
 
@@ -78,7 +73,7 @@ namespace WindowsFormsApp1
 		{
 			InitializeComponent();
 			lVManager = new ListViewManager(listView1);
-			bot = new BotFunctions();
+			bot = new BotFunctions(timer1);
 		}
 		private void GetSSButton_Click(object sender, EventArgs e)
 		{
@@ -105,11 +100,32 @@ namespace WindowsFormsApp1
 			if (bmp == null)
 				return;
 			string pos = rect.Left.ToString()+"," + rect.Top.ToString() +","+ rect.Right.ToString()+"," + rect.Bottom.ToString();
-			lVManager.Add(pos,imgCount.ToString() ,timeStep.Text);
+			lVManager.Add(false.ToString(),pos,imgCount.ToString() ,timeStep.Text);
 			//local side for bot to work
-			allTime.Add(int.Parse(timeStep.Text));
-			allBitmaps.Add(BitmapConversion.Instance.ResizeTo256Bit(bmp));
-			allRect.Add(rect);
+			int t = int.Parse(timeStep.Text);
+			Bitmap b = BitmapConversion.Instance.ResizeTo256Bit(bmp);
+			Rectangle r = rect;
+			//add into the list in bot functions
+			bot.commands.Add(new DataHandler.CommandNode(r, b, t));
+			bmp = null;
+
+			//find someway to change this
+			addSubNodeButton.Visible = true;
+			addSubNodeButton.Enabled= true;
+		}
+		private void addSubNodeButton_Click(object sender, EventArgs e)
+		{
+			if (bmp == null)
+				return;
+			string pos = rect.Left.ToString() + "," + rect.Top.ToString() + "," + rect.Right.ToString() + "," + rect.Bottom.ToString();
+			lVManager.Add(true.ToString(), pos, imgCount.ToString(), timeStep.Text);
+			//local side for bot to work
+			int t = int.Parse(timeStep.Text);
+			Bitmap b = BitmapConversion.Instance.ResizeTo256Bit(bmp);
+			Rectangle r = rect;
+			//add into the list in bot functions
+			//TODO change to be able to append to whichever mainNode is selected
+			bot.AddSubNodeAt(bot.commands.Count-1,new DataHandler.CommandNode(r, b, t));
 			bmp = null;
 		}
 		private void Save_Click(object sender, EventArgs e)
@@ -126,42 +142,25 @@ namespace WindowsFormsApp1
 
 		private void StartButton_Click(object sender, EventArgs e)
 		{
+			bot.ResetAllNodes();
 			timer1.Start();
-			timer1.Interval = 5000;
+			timer1.Interval = 1000;
 			this.WindowState = FormWindowState.Minimized;
 			
 		}
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-			timer1.Stop();
-			if(lVManager.time.Count > iterationNumb)
-			{
-				timer1.Interval = allTime[iterationNumb];
-				//Perform Action
-
-				Bitmap bMap = bot.printScreen(allRect[iterationNumb]);
-
-				byte[] a = BitmapConversion.Instance.Array1DFromBitmap(allBitmaps[iterationNumb]);
-				byte[] b = BitmapConversion.Instance.Array1DFromBitmap(bMap);
-				bool SameImage = BitmapConversion.Instance.CompareBytes(a, b);
-				if (SameImage)
-				{
-					bot.MoveCursor(allRect[iterationNumb]);
-					bot.LeftClick();
-				}
-
-				//end of actions
-				iterationNumb++;
-				timer1.Start();
-				//reset the actions
-				//if (iterationNumb >= lVManager.time.Count)
-				//    iterationNumb = 0;
-			}
-			else
+			if(bot.RunStep() == false)
 			{
 				this.WindowState = FormWindowState.Normal;
-			}
+			}		
+		}
+
+		private void Loop_CheckedChanged(object sender, EventArgs e)
+		{
+			//once hotkey is done this can be uncommented
+			//bot.loopCommands = loopCheckBox.Checked;
 		}
 	}
 }

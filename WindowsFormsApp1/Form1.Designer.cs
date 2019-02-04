@@ -49,6 +49,9 @@
 			this.Time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.StartButton = new System.Windows.Forms.Button();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.addSubNodeButton = new System.Windows.Forms.Button();
+			this.MainNode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.loopCheckBox = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
@@ -175,7 +178,7 @@
 			// 
 			// addButton
 			// 
-			this.addButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.addButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.addButton.Location = new System.Drawing.Point(675, 74);
 			this.addButton.Name = "addButton";
 			this.addButton.Size = new System.Drawing.Size(75, 35);
@@ -215,6 +218,7 @@
 			// listView1
 			// 
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.MainNode,
             this.Position,
             this.ImageName,
             this.Time});
@@ -255,11 +259,44 @@
 			// 
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
+			// addSubNodeButton
+			// 
+			this.addSubNodeButton.BackColor = System.Drawing.SystemColors.Control;
+			this.addSubNodeButton.Cursor = System.Windows.Forms.Cursors.Arrow;
+			this.addSubNodeButton.Enabled = false;
+			this.addSubNodeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.addSubNodeButton.ForeColor = System.Drawing.Color.Red;
+			this.addSubNodeButton.Location = new System.Drawing.Point(765, 74);
+			this.addSubNodeButton.Name = "addSubNodeButton";
+			this.addSubNodeButton.Size = new System.Drawing.Size(94, 35);
+			this.addSubNodeButton.TabIndex = 15;
+			this.addSubNodeButton.Text = "AddSubNode";
+			this.addSubNodeButton.UseVisualStyleBackColor = false;
+			this.addSubNodeButton.Click += new System.EventHandler(this.addSubNodeButton_Click);
+			// 
+			// MainNode
+			// 
+			this.MainNode.Text = "Sub";
+			this.MainNode.Width = 40;
+			// 
+			// loopCheckBox
+			// 
+			this.loopCheckBox.AutoSize = true;
+			this.loopCheckBox.Location = new System.Drawing.Point(448, 372);
+			this.loopCheckBox.Name = "loopCheckBox";
+			this.loopCheckBox.Size = new System.Drawing.Size(50, 17);
+			this.loopCheckBox.TabIndex = 16;
+			this.loopCheckBox.Text = "Loop";
+			this.loopCheckBox.UseVisualStyleBackColor = true;
+			this.loopCheckBox.CheckedChanged += new System.EventHandler(this.Loop_CheckedChanged);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1019, 456);
+			this.Controls.Add(this.loopCheckBox);
+			this.Controls.Add(this.addSubNodeButton);
 			this.Controls.Add(this.StartButton);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.addButton);
@@ -306,6 +343,9 @@
         private System.Windows.Forms.ColumnHeader Time;
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Timer timer1;
-    }
+		private System.Windows.Forms.ColumnHeader MainNode;
+		private System.Windows.Forms.Button addSubNodeButton;
+		private System.Windows.Forms.CheckBox loopCheckBox;
+	}
 }
 

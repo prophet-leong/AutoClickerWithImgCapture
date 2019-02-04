@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.DataHandler;
 
 namespace WindowsFormsApp1.Functions
 {
@@ -39,6 +40,57 @@ namespace WindowsFormsApp1.Functions
 			public MOUSEINPUT mi;
 		};
 		#endregion
+
+		public int iterationNumb = 0;
+		public bool loopCommands = false;
+		public List<CommandNode> commands = new List<CommandNode>();
+		Timer timerPtr;
+
+		public BotFunctions(Timer timer)
+		{
+			timerPtr = timer;
+		}
+
+
+
+		public void AddSubNodeAt(int i,CommandNode n)
+		{
+			commands[i].FindEmptySubNode().subNode = n;
+		}
+
+		public void ResetAllNodes()
+		{
+			iterationNumb = 0;
+			foreach (CommandNode i in commands)
+			{
+				i.UnmarkAllNodes();
+			}
+		}
+		void NextIteration()
+		{
+			++iterationNumb;
+			if(loopCommands)
+			{
+				if (iterationNumb >= commands.Count)
+				{
+					ResetAllNodes();
+				}
+			}
+		}
+		CommandNode GetNode()
+		{
+			if (iterationNumb >= commands.Count)
+				return null;
+			CommandNode n = commands[iterationNumb].GetAvalibleNode();
+			if(n == null)
+			{
+				NextIteration();
+				return GetNode();
+			}
+			return n;
+		}
+
+
 		public Bitmap printScreen(Rectangle rect)
 		{
 			Screen scr = Screen.AllScreens[0];
@@ -70,6 +122,40 @@ namespace WindowsFormsApp1.Functions
 			//set the INPUT for mouse up and send
 			i.mi.dwFlags = MOUSEEVENTF_LEFTUP;
 			SendInput(1, ref i, Marshal.SizeOf(i));
+		}
+		public bool RunStep()
+		{
+			timerPtr.Stop();
+			CommandNode node = GetNode();
+			if (node != null)
+			{
+				//Perform Action
+
+				Bitmap bMap = printScreen(node.rect);
+
+				byte[] a = BitmapConversion.Instance.Array1DFromBitmap(node.bmp);
+				byte[] b = BitmapConversion.Instance.Array1DFromBitmap(bMap);
+				bool SameImage = BitmapConversion.Instance.CompareBytes(a, b);
+				if (SameImage)
+				{
+					node.used = true;
+					MoveCursor(node.rect);
+					LeftClick();
+					NextIteration();
+					//set time for the next loop
+					timerPtr.Interval = node.time;
+				}
+				else
+				{
+					node.used = true;
+					timerPtr.Interval = node.time;
+				}
+				timerPtr.Start();
+				return true;
+			}
+			timerPtr.Stop();
+			return false;
+
 		}
 	}
 }

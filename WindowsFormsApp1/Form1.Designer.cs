@@ -44,14 +44,15 @@
 			this.addButton = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.listView1 = new System.Windows.Forms.ListView();
+			this.MainNode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.Position = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.ImageName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.Time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.StartButton = new System.Windows.Forms.Button();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.addSubNodeButton = new System.Windows.Forms.Button();
-			this.MainNode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.loopCheckBox = new System.Windows.Forms.CheckBox();
+			this.globalEventProvider1 = new Gma.UserActivityMonitor.GlobalEventProvider();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
@@ -231,6 +232,11 @@
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
 			// 
+			// MainNode
+			// 
+			this.MainNode.Text = "Sub";
+			this.MainNode.Width = 40;
+			// 
 			// Position
 			// 
 			this.Position.Text = "Position";
@@ -274,11 +280,6 @@
 			this.addSubNodeButton.UseVisualStyleBackColor = false;
 			this.addSubNodeButton.Click += new System.EventHandler(this.addSubNodeButton_Click);
 			// 
-			// MainNode
-			// 
-			this.MainNode.Text = "Sub";
-			this.MainNode.Width = 40;
-			// 
 			// loopCheckBox
 			// 
 			this.loopCheckBox.AutoSize = true;
@@ -314,6 +315,7 @@
 			this.Controls.Add(this.label1);
 			this.Name = "Form1";
 			this.Text = "Form1";
+			this.Load += new System.EventHandler(this.Form1_Load);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.ResumeLayout(false);
@@ -346,6 +348,7 @@
 		private System.Windows.Forms.ColumnHeader MainNode;
 		private System.Windows.Forms.Button addSubNodeButton;
 		private System.Windows.Forms.CheckBox loopCheckBox;
+		private Gma.UserActivityMonitor.GlobalEventProvider globalEventProvider1;
 	}
 }
 

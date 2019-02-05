@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Gma.UserActivityMonitor;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,8 +28,29 @@ namespace WindowsFormsApp1
 
 		int imgCount = 0;
 
+		Keys registedHotkey = Keys.F5;
+		public Form1()
+		{
+			InitializeComponent();
+		}
+		private void Form1_Load(object sender, EventArgs e)
+		{
+			lVManager = new ListViewManager(listView1);
+			bot = new BotFunctions(timer1);
+			HookManager.KeyDown += HookManager_KeyDown;
+		}
 
 
+		#region HotKey
+		private void HookManager_KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyCode == registedHotkey)
+			{
+				this.WindowState = FormWindowState.Normal;
+				timer1.Stop();
+			}
+		}
+		#endregion
 
 		#region Form1 screenshotting functions
 		void form2_MouseDown(object sender, MouseEventArgs e)
@@ -51,8 +74,20 @@ namespace WindowsFormsApp1
 
 		void form2_MouseUp(object sender, MouseEventArgs e)
 		{
+			Point MM = e.Location;
+			rect = new Rectangle(Math.Min(MD.X, MM.X), Math.Min(MD.Y, MM.Y),
+								 Math.Abs(MD.X - MM.X), Math.Abs(MD.Y - MM.Y));
+
+
 			form2.Hide();
 			Screen scr = Screen.AllScreens[0];
+
+			//force correction so that there wont be an error when ppl just click on a spot
+			if (rect.Width <= 0)
+				rect.Width = 2;
+			if (rect.Height <= 0)
+				rect.Height = 2;
+
 			bmp = new Bitmap(rect.Width, rect.Height);
 			using (Graphics G = Graphics.FromImage(bmp))
 			{
@@ -69,32 +104,9 @@ namespace WindowsFormsApp1
 			Show();
 		}
 		#endregion
-		public Form1()
-		{
-			InitializeComponent();
-			lVManager = new ListViewManager(listView1);
-			bot = new BotFunctions(timer1);
-		}
-		private void GetSSButton_Click(object sender, EventArgs e)
-		{
-			Hide();
-			form2 = new Form();
-			form2.BackColor = Color.Wheat;
-			form2.TransparencyKey = form2.BackColor;
-			form2.ControlBox = false;
-			form2.MaximizeBox = false;
-			form2.MinimizeBox = false;
-			form2.FormBorderStyle = FormBorderStyle.None;
-			form2.WindowState = FormWindowState.Maximized;
-			form2.MouseDown += form2_MouseDown;
-			form2.MouseMove += form2_MouseMove;
-			form2.Paint += form2_Paint;
-			form2.MouseUp += form2_MouseUp;
-			
-			form2.Show();
-			
-		}
 
+
+		#region AddCommandNodes
 		private void addButton_Click(object sender, EventArgs e)
 		{
 			if (bmp == null)
@@ -128,6 +140,30 @@ namespace WindowsFormsApp1
 			bot.AddSubNodeAt(bot.commands.Count-1,new DataHandler.CommandNode(r, b, t));
 			bmp = null;
 		}
+		#endregion
+
+
+		#region ButtonOnClicks
+		private void GetSSButton_Click(object sender, EventArgs e)
+		{
+			Hide();
+			form2 = new Form();
+			form2.BackColor = Color.Wheat;
+			form2.TransparencyKey = form2.BackColor;
+			form2.ControlBox = false;
+			form2.MaximizeBox = false;
+			form2.MinimizeBox = false;
+			form2.FormBorderStyle = FormBorderStyle.None;
+			form2.WindowState = FormWindowState.Maximized;
+			form2.MouseDown += form2_MouseDown;
+			form2.MouseMove += form2_MouseMove;
+			form2.Paint += form2_Paint;
+			form2.MouseUp += form2_MouseUp;
+			
+			form2.Show();
+			
+		}
+
 		private void Save_Click(object sender, EventArgs e)
 		{
 			if(bmp != null)
@@ -148,7 +184,10 @@ namespace WindowsFormsApp1
 			this.WindowState = FormWindowState.Minimized;
 			
 		}
+		#endregion
 
+
+		#region Timer
 		private void timer1_Tick(object sender, EventArgs e)
 		{
 			if(bot.RunStep() == false)
@@ -160,7 +199,11 @@ namespace WindowsFormsApp1
 		private void Loop_CheckedChanged(object sender, EventArgs e)
 		{
 			//once hotkey is done this can be uncommented
-			//bot.loopCommands = loopCheckBox.Checked;
+			bot.loopCommands = loopCheckBox.Checked;
 		}
+
+
+		#endregion
+
 	}
 }

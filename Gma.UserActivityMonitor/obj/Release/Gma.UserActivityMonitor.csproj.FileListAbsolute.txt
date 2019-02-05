@@ -1,0 +1,4 @@
+D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\Gma.UserActivityMonitor\bin\Release\Gma.UserActivityMonitor.dll
+D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\Gma.UserActivityMonitor\obj\Release\Gma.UserActivityMonitor.csprojAssemblyReference.cache
+D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\Gma.UserActivityMonitor\obj\Release\Gma.UserActivityMonitor.csproj.CoreCompileInputs.cache
+D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\Gma.UserActivityMonitor\obj\Release\Gma.UserActivityMonitor.dll

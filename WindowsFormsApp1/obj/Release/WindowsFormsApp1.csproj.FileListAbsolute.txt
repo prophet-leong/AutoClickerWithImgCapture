@@ -7,3 +7,6 @@ D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\WindowsFormsApp1\obj\Releas
 D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\WindowsFormsApp1\obj\Release\WindowsFormsApp1.exe
 D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\WindowsFormsApp1\obj\Release\WindowsFormsApp1.pdb
+D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csprojAssemblyReference.cache
+D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\WindowsFormsApp1\bin\Release\Gma.UserActivityMonitor.dll
+D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.CopyComplete

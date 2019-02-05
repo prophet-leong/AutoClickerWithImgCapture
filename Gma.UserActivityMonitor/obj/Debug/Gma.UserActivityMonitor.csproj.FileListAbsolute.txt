@@ -1,0 +1,14 @@
+D:\Users\Jun Xiang\Desktop\GlobalHook\Gma.UserActivityMonitor\bin\Debug\Gma.xml
+D:\Users\Jun Xiang\Desktop\GlobalHook\Gma.UserActivityMonitor\bin\Debug\Gma.UserActivityMonitor.dll
+D:\Users\Jun Xiang\Desktop\GlobalHook\Gma.UserActivityMonitor\bin\Debug\Gma.UserActivityMonitor.pdb
+D:\Users\Jun Xiang\Desktop\GlobalHook\Gma.UserActivityMonitor\obj\Debug\Gma.UserActivityMonitor.csprojAssemblyReference.cache
+D:\Users\Jun Xiang\Desktop\GlobalHook\Gma.UserActivityMonitor\obj\Debug\Gma.UserActivityMonitor.csproj.CoreCompileInputs.cache
+D:\Users\Jun Xiang\Desktop\GlobalHook\Gma.UserActivityMonitor\obj\Debug\Gma.UserActivityMonitor.dll
+D:\Users\Jun Xiang\Desktop\GlobalHook\Gma.UserActivityMonitor\obj\Debug\Gma.UserActivityMonitor.pdb
+D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\Gma.UserActivityMonitor\bin\Debug\Gma.xml
+D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\Gma.UserActivityMonitor\bin\Debug\Gma.UserActivityMonitor.dll
+D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\Gma.UserActivityMonitor\bin\Debug\Gma.UserActivityMonitor.pdb
+D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\Gma.UserActivityMonitor\obj\Debug\Gma.UserActivityMonitor.csprojAssemblyReference.cache
+D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\Gma.UserActivityMonitor\obj\Debug\Gma.UserActivityMonitor.csproj.CoreCompileInputs.cache
+D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\Gma.UserActivityMonitor\obj\Debug\Gma.UserActivityMonitor.dll
+D:\Users\Jun Xiang\Desktop\AutoclickerWIthImgCapture\Gma.UserActivityMonitor\obj\Debug\Gma.UserActivityMonitor.pdb
